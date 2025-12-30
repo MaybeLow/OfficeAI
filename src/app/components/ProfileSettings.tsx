@@ -53,6 +53,14 @@ export function ProfileSettings({ onBack }: ProfileSettingsProps) {
     }, 1000);
   };
 
+  const handleDeleteProfile = () => {
+    if (window.confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+      // Add delete logic here
+      console.log('Profile deleted');
+      onBack();
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -136,8 +144,6 @@ export function ProfileSettings({ onBack }: ProfileSettingsProps) {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
-          
         </div>
       </div>
 
@@ -242,12 +248,23 @@ export function ProfileSettings({ onBack }: ProfileSettingsProps) {
             ))}
             <div className="mt-4 pt-4 border-t border-blue-200">
               <p className="text-sm text-gray-600">
-                All data is encrypted and used solely to generate personalized recommendations. 
+                All data is encrypted, stored locally, and used solely to generate personalized recommendations. 
                 <br />You can add more data here using the chat bot.
               </p>
             </div>
           </div>
         )}
+      </div>
+
+      {/* Delete Profile */}
+      <div className="pt-2">
+        <button
+          onClick={handleDeleteProfile}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 text-red-700 border border-red-200 rounded-xl hover:bg-red-100 transition-colors"
+        >
+          <Trash2 className="w-5 h-5" />
+          Delete Profile
+        </button>
       </div>
     </div>
   );
